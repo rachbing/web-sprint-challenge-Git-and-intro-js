@@ -249,12 +249,18 @@ Example born in 1901 and died in 1959 - included -- born in 1889 and died in 192
 If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 // Hint - Look up the .split() method
 
-/*function get20s(array, name) {
+function get20s(array) {
+  const names = [];
   for(let i = 0; i < array.length; i++) {
-   const birthYear = [];
-    if(array[i]['years'])
-  }
-} */
+    let yearsRange = array[i].years.split('-');
+    let birth = yearsRange[0]
+    let death = yearsRange[1]
+    if(birth >= 1900 && death <= 2000) {
+      names.push(array[i].name)
+    }
+  } 
+  return names
+} 
 
 
 
@@ -269,11 +275,12 @@ For example, if removeArtist is invoked with the artists array and the number 0,
 
 function removeArtist(array, id) {
   for(let i = 0; i < array.length; i++) {
+  
     if(array[i].id === id) {
-      delete array[i]
-      return artists.length
+       array.splice(i, 1) 
     }
   }
+  return array.length
 }
 
 
@@ -293,9 +300,20 @@ Use addArtist to do the following:
 
 Example: addArtist(artists) should return the artists array with the above object added to the end of the array. */
 
-function addArtist(array, artist) {
-  
-}
+// make function that takes in array and artist
+
+
+
+function addArtist(array) { 
+  array.push({id: 20,
+    name: 'Rachel Bingham', 
+    years: '2001 - current day',
+    genre: 'Web Design', 
+    nationality: 'Asian',
+    bio: 'She is currently struggling with a sprint project but is surprised at how much she has gotten correct.'})
+    return array
+} 
+
 
 
 
@@ -370,7 +388,7 @@ foo();
 module.exports = {
   foo,
   getArtistByIndex,
-  //get20s,
+  get20s,
   removeArtist,
   addArtist,
   lotsOfArt,
